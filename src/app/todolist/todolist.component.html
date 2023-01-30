@@ -1,13 +1,24 @@
-<nb-card size="medium">
+<nb-card size="giant">
   <!-- adding new task through form -->
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <input
       nbInput
+      fullWidth
+      status="primary"
       formControlName="title"
       [required]="true"
-      placeholder="Add a task"
+      placeholder="Describe a task"
     />
-    <button nbButton status="success" [disabled]="form.invalid">Add</button>
+    <div>
+      <button
+        nbButton
+        status="success"
+        [disabled]="form.invalid"
+        style="margin-top: 1rem"
+      >
+        Add task
+      </button>
+    </div>
   </form>
 
   <!-- displaying task list -->
@@ -18,12 +29,19 @@
       <nb-checkbox
         status="success"
         [(ngModel)]="todo.isCompleted"
+        (change)="updateProgress()"
       ></nb-checkbox>
     </nb-list-item>
   </nb-list>
-  <nb-card-footer
-    ><button nbButton (click)="deleteCompleted()">
+  <nb-card-footer>
+    <div>Progress</div>
+    <nb-progress-bar
+      status="success"
+      [value]="progress"
+      [displayValue]="true"
+    ></nb-progress-bar>
+    <button nbButton (click)="deleteCompleted()" style="margin-top: 1rem">
       Complete Tasks
-    </button></nb-card-footer
-  >
+    </button>
+  </nb-card-footer>
 </nb-card>

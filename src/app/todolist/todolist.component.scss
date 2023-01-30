@@ -1,6 +1,6 @@
 nb-card {
     min-width: 10rem;
-    max-width: 120rem;
+    max-width: 100rem;
     margin: 0 auto 2rem;
 }
 form {
@@ -8,4 +8,11 @@ form {
 }
 nb-checkbox{
     padding: 0 1rem 0 1rem;
+        height: 100%;
+        margin-left: auto;
+}
+nb-list-item {
+    height: 50px;
+    display: flex;
+    align-items: center;
 }

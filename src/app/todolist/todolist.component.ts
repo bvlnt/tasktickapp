@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from './todo.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-todolist',
@@ -10,6 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class TodolistComponent implements OnInit {
   todoList: Todo[] = [];
   form: FormGroup;
+  progress!: number;
 
   constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
@@ -18,11 +20,15 @@ export class TodolistComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.todoList = [
-      { task: 'Task 1', isCompleted: false },
-      { task: 'Task 2', isCompleted: false },
-      { task: 'Task 3', isCompleted: false },
-    ];
+    this.progress = 0;
+  }
+
+  updateProgress() {
+    this.progress = Math.round(
+      (this.todoList.filter((todo) => todo.isCompleted).length /
+        this.todoList.length) *
+        100
+    );
   }
 
   onSubmit() {
@@ -31,13 +37,15 @@ export class TodolistComponent implements OnInit {
         task: this.form.get('title')!.value,
         isCompleted: false,
       };
-
       this.todoList.push(newTodo);
       this.form.reset();
+      this.updateProgress();
     }
   }
 
   deleteCompleted() {
     this.todoList = this.todoList.filter((todo) => !todo.isCompleted);
+    this.updateProgress();
+    this.progress = 0;
   }
 }

@@ -12,6 +12,7 @@ import {
   NbInputModule,
   NbButtonModule,
   NbCheckboxModule,
+  NbProgressBarModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { TodolistComponent } from './todolist/todolist.component';
@@ -33,6 +34,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     NbCheckboxModule,
+    NbProgressBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
