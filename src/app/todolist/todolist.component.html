@@ -1,0 +1,29 @@
+<nb-card size="medium">
+  <!-- adding new task through form -->
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <input
+      nbInput
+      formControlName="title"
+      [required]="true"
+      placeholder="Add a task"
+    />
+    <button nbButton status="success" [disabled]="form.invalid">Add</button>
+  </form>
+
+  <!-- displaying task list -->
+  <nb-card-header> To-Do List </nb-card-header>
+  <nb-list>
+    <nb-list-item *ngFor="let todo of todoList">
+      {{ todo.task }}
+      <nb-checkbox
+        status="success"
+        [(ngModel)]="todo.isCompleted"
+      ></nb-checkbox>
+    </nb-list-item>
+  </nb-list>
+  <nb-card-footer
+    ><button nbButton (click)="deleteCompleted()">
+      Complete Tasks
+    </button></nb-card-footer
+  >
+</nb-card>
