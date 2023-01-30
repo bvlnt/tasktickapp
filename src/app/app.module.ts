@@ -13,6 +13,7 @@ import {
   NbButtonModule,
   NbCheckboxModule,
   NbProgressBarModule,
+  NbIconModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { TodolistComponent } from './todolist/todolist.component';
@@ -24,9 +25,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NbThemeModule.forRoot({ name: 'cosmic' }),
+    NbThemeModule.forRoot({ name: 'corporate' }),
     NbLayoutModule,
     NbEvaIconsModule,
+    NbIconModule,
     NbListModule,
     NbCardModule,
     NbInputModule,

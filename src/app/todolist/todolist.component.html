@@ -24,13 +24,20 @@
   <!-- displaying task list -->
   <nb-card-header> To-Do List </nb-card-header>
   <nb-list>
-    <nb-list-item *ngFor="let todo of todoList">
+    <!-- style="text-decoration: line-through; color: lightgreen" -->
+    <nb-list-item
+      *ngFor="let todo of todoList"
+      [ngClass]="{ 'line-through-lightgreen': todo.isCompleted }"
+    >
       {{ todo.task }}
       <nb-checkbox
         status="success"
         [(ngModel)]="todo.isCompleted"
         (change)="updateProgress()"
       ></nb-checkbox>
+      <button nbButton status="danger" (click)="deleteItem(todo)">
+        <nb-icon icon="trash-2-outline"></nb-icon>
+      </button>
     </nb-list-item>
   </nb-list>
   <nb-card-footer>
@@ -41,7 +48,7 @@
       [displayValue]="true"
     ></nb-progress-bar>
     <button nbButton (click)="deleteCompleted()" style="margin-top: 1rem">
-      Complete Tasks
+      Delete Completed Tasks
     </button>
   </nb-card-footer>
 </nb-card>

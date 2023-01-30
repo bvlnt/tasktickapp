@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from './todo.interface';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-todolist',
@@ -20,6 +19,10 @@ export class TodolistComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.progressReset();
+  }
+
+  progressReset() {
     this.progress = 0;
   }
 
@@ -43,9 +46,15 @@ export class TodolistComponent implements OnInit {
     }
   }
 
+  deleteItem(todo: Todo) {
+    this.todoList = this.todoList.filter((td) => td !== todo);
+    this.updateProgress();
+    this.progressReset();
+  }
+
   deleteCompleted() {
     this.todoList = this.todoList.filter((todo) => !todo.isCompleted);
     this.updateProgress();
-    this.progress = 0;
+    this.progressReset();
   }
 }
