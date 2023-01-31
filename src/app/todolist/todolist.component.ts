@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from './todo.interface';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-todolist',
@@ -49,7 +53,6 @@ export class TodolistComponent implements OnInit {
   deleteItem(todo: Todo) {
     this.todoList = this.todoList.filter((td) => td !== todo);
     this.updateProgress();
-    this.progressReset();
   }
 
   deleteCompleted() {
