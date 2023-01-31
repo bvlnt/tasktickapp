@@ -18,11 +18,14 @@ import {
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { TodolistComponent } from './todolist/todolist.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [AppComponent, TodolistComponent],
+  declarations: [AppComponent, TodolistComponent, LoginComponent],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     NbThemeModule.forRoot({ name: 'corporate' }),
