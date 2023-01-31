@@ -24,6 +24,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 
+import { getAuth } from 'firebase/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+
 const firebaseConfig = {
   apiKey: 'AIzaSyBMxDf_A0-iOfO1CUm9sI-Rk7KPgbQ-RRA',
   authDomain: 'tasktick-52e91.firebaseapp.com',
