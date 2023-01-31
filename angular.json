@@ -97,5 +97,7 @@
       }
     }
   },
-  "defaultProject": "tasktickapp"
+  "cli": {
+    "analytics": "a0930807-99b9-4dba-80c4-6f5f3adbcac5"
+  }
 }
