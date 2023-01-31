@@ -6,6 +6,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 This To-Do list project was made to learn Angular fundamentals and implement production level services.
 
-##Hosting
+## Hosting
 
 https://tasktick-52e91.web.app
