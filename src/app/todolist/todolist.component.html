@@ -47,7 +47,13 @@
       [value]="progress"
       [displayValue]="true"
     ></nb-progress-bar>
-    <button nbButton (click)="deleteCompleted()" style="margin-top: 1rem">
+    <button
+      nbButton
+      hero
+      status="success"
+      (click)="deleteCompleted()"
+      style="margin-top: 1rem"
+    >
       Delete Completed Tasks
     </button>
   </nb-card-footer>

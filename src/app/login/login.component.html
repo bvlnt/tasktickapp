@@ -1,3 +1,22 @@
-<button style="margin-left: 3rem" nbButton (click)="loginWithGoogle()">
+<button
+  *ngIf="!user"
+  style="margin-left: 3rem"
+  nbButton
+  hero
+  status="info"
+  (click)="loginWithGoogle()"
+>
   Login with Google
 </button>
+<div *ngIf="user" style="margin-left: 3rem">
+  Logged in as {{ user.displayName }} ({{ user.email }})
+  <button
+    nbButton
+    hero
+    status="info"
+    style="margin-left: 1rem"
+    (click)="logout()"
+  >
+    Log Out
+  </button>
+</div>
