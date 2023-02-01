@@ -14,6 +14,8 @@ import {
   NbCheckboxModule,
   NbProgressBarModule,
   NbIconModule,
+  NbAlertModule,
+  NbUserModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { TodolistComponent } from './todolist/todolist.component';
@@ -45,7 +47,7 @@ initializeApp(firebaseConfig);
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NbThemeModule.forRoot({ name: 'corporate' }),
+    NbThemeModule.forRoot({ name: 'cosmic' }),
     NbLayoutModule,
     NbEvaIconsModule,
     NbIconModule,
@@ -57,6 +59,8 @@ initializeApp(firebaseConfig);
     ReactiveFormsModule,
     NbCheckboxModule,
     NbProgressBarModule,
+    NbAlertModule,
+    NbUserModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

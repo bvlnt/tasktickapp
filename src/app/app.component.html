@@ -1,16 +1,18 @@
 <nb-layout>
   <nb-layout-header fixed>
+    <nb-icon icon="done-all-outline" style="margin-right: 0.5rem"></nb-icon>
     <h1>Task Tick</h1>
-    <app-login></app-login>
   </nb-layout-header>
-
   <nb-layout-column>
+    <app-login></app-login>
+    <nb-alert *ngIf="authSuccess && !closeAlert" status="success">
+      You have successfully signed in!
+    </nb-alert>
     <app-todolist></app-todolist>
   </nb-layout-column>
-
   <nb-layout-footer fixed>
-    <nb-icon icon="github-outline"></nb-icon
-    ><a
+    <nb-icon icon="github-outline"></nb-icon>
+    <a
       href="https://github.com/bvlnt/tasktickapp"
       style="text-decoration: none; margin-left: 1rem"
       target="_blank"

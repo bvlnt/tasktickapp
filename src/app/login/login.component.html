@@ -1,22 +1,28 @@
+<nb-card *ngIf="user">
+  <nb-card-body>
+    <nb-user
+      size="large"
+      name="{{ user.displayName }}"
+      title="{{ user.email }}"
+      picture="{{ user.photoURL }}"
+    >
+    </nb-user>
+  </nb-card-body>
+  <nb-card-footer>
+    <button *ngIf="user" nbButton hero status="info" (click)="logout()">
+      Log Out
+    </button>
+  </nb-card-footer>
+</nb-card>
+
 <button
   *ngIf="!user"
-  style="margin-left: 3rem"
   nbButton
   hero
   status="info"
+  style="margin-bottom: 2rem"
   (click)="loginWithGoogle()"
 >
-  Login with Google
+  <nb-icon icon="google-outline"></nb-icon>
+  Sign in with Google
 </button>
-<div *ngIf="user" style="margin-left: 3rem">
-  Logged in as {{ user.displayName }} ({{ user.email }})
-  <button
-    nbButton
-    hero
-    status="info"
-    style="margin-left: 1rem"
-    (click)="logout()"
-  >
-    Log Out
-  </button>
-</div>

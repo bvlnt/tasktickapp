@@ -6,6 +6,7 @@ import {
   onAuthStateChanged,
   signOut,
 } from 'firebase/auth';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,8 +16,10 @@ import {
 export class LoginComponent implements OnInit {
   provider: any;
   user: any;
+  // alert-hez változó
+  authSuccess!: boolean;
 
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
     const provider = new GoogleAuthProvider();
@@ -29,13 +32,19 @@ export class LoginComponent implements OnInit {
   }
 
   loginWithGoogle() {
+    this.authSuccess = false;
+
     const auth = getAuth();
     signInWithPopup(auth, this.provider)
       .then((result) => {
         const user = result.user;
         console.log(user);
+        this.authSuccess = true;
+        this.authService.updateAuthStatus(true);
       })
       .catch((error) => {
+        this.authSuccess = false;
+        this.authService.updateAuthStatus(false);
         const errorCode = error.code;
         const errorMessage = error.message;
         const email = error.customData.email;
