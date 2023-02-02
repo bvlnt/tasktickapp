@@ -3,12 +3,14 @@
     <nb-icon icon="done-all-outline" style="margin-right: 0.5rem"></nb-icon>
     <h1>Task Tick</h1>
   </nb-layout-header>
+  <nb-sidebar>
+    <app-navmenu></app-navmenu>
+  </nb-sidebar>
   <nb-layout-column>
-    <app-login></app-login>
     <nb-alert *ngIf="authSuccess && !closeAlert" status="success">
       You have successfully signed in!
     </nb-alert>
-    <app-todolist></app-todolist>
+    <router-outlet></router-outlet>
   </nb-layout-column>
   <nb-layout-footer fixed>
     <nb-icon icon="github-outline"></nb-icon>

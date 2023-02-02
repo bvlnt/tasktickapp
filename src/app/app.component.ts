@@ -13,7 +13,7 @@ export class AppComponent {
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    //login status
+    //login status, alert box closing
     this.authService.authStatus.subscribe((authstatus) => {
       this.authSuccess = authstatus;
       if (this.authSuccess) {
