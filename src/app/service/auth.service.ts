@@ -12,6 +12,10 @@ export class AuthService {
     this.authSubject.next(authstatus);
   }
 
+  logout() {
+    this.updateAuthStatus(false);
+  }
+
   isLoggedIn() {
     return this.authSubject.getValue();
   }

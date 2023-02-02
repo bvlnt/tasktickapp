@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
     const auth = getAuth();
     signOut(auth)
       .then(() => {
-        // Sign-out successful.
+        this.authService.logout();
       })
       .catch((error) => {
         // An error happened.
