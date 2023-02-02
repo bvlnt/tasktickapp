@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { NbMenuItem } from '@nebular/theme';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-navmenu',
@@ -8,11 +9,11 @@ import { NbMenuItem } from '@nebular/theme';
   styleUrls: ['./navmenu.component.scss'],
 })
 export class NavmenuComponent implements OnInit {
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   items: NbMenuItem[] = [
     {
-      title: 'Login',
+      title: 'Account',
       link: '/login',
     },
     {

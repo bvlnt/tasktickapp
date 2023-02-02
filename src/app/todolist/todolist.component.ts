@@ -31,11 +31,15 @@ export class TodolistComponent implements OnInit {
   }
 
   updateProgress() {
-    this.progress = Math.round(
-      (this.todoList.filter((todo) => todo.isCompleted).length /
-        this.todoList.length) *
-        100
-    );
+    if (this.todoList.length === 0) {
+      this.progress = 0;
+    } else {
+      this.progress = Math.round(
+        (this.todoList.filter((todo) => todo.isCompleted).length /
+          this.todoList.length) *
+          100
+      );
+    }
   }
 
   onSubmit() {

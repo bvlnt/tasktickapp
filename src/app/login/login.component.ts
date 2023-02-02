@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
         this.authService.logout();
       })
       .catch((error) => {
-        // An error happened.
+        console.log(error);
       });
   }
 }
