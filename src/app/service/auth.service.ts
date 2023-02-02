@@ -11,4 +11,8 @@ export class AuthService {
   updateAuthStatus(authstatus: boolean) {
     this.authSubject.next(authstatus);
   }
+
+  isLoggedIn() {
+    return this.authSubject.getValue();
+  }
 }
