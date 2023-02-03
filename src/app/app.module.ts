@@ -18,6 +18,7 @@ import {
   NbUserModule,
   NbSidebarModule,
   NbMenuModule,
+  NbSelectModule,
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { TodolistComponent } from './todolist/todolist.component';
@@ -44,7 +45,12 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 
 @NgModule({
-  declarations: [AppComponent, TodolistComponent, LoginComponent, NavmenuComponent],
+  declarations: [
+    AppComponent,
+    TodolistComponent,
+    LoginComponent,
+    NavmenuComponent,
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -68,6 +74,7 @@ initializeApp(firebaseConfig);
     NbProgressBarModule,
     NbAlertModule,
     NbUserModule,
+    NbSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

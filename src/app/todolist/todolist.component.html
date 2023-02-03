@@ -9,6 +9,17 @@
       [required]="true"
       placeholder="Describe a task"
     />
+    <nb-select
+      status="primary"
+      placeholder="Choose a category"
+      formControlName="category"
+      [required]="true"
+      style="margin-top: 1rem"
+    >
+      <nb-option *ngFor="let category of categories" [value]="category">{{
+        category
+      }}</nb-option>
+    </nb-select>
     <div>
       <button
         nbButton
@@ -20,16 +31,13 @@
       </button>
     </div>
   </form>
-
   <!-- displaying task list -->
   <nb-card-header> To-Do List </nb-card-header>
   <nb-list>
-    <!-- style="text-decoration: line-through; color: lightgreen" -->
     <nb-list-item
       *ngFor="let todo of todoList"
       [ngClass]="{ 'line-through-lightgreen': todo.isCompleted }"
-    >
-      {{ todo.task }}
+      ><div>{{ todo.task }} Category: {{ todo.category }}</div>
       <nb-checkbox
         status="success"
         [(ngModel)]="todo.isCompleted"

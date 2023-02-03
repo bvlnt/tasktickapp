@@ -16,9 +16,13 @@ export class TodolistComponent implements OnInit {
   form: UntypedFormGroup;
   progress!: number;
 
+  categories = ['Chores', 'Fitness', 'Shopping', 'Work', 'Project', 'Other'];
+  selectedCategory = '';
+
   constructor(private formBuilder: UntypedFormBuilder) {
     this.form = this.formBuilder.group({
       title: ['', [Validators.required, Validators.minLength(2)]],
+      category: ['', [Validators.required]],
     });
   }
 
@@ -46,6 +50,7 @@ export class TodolistComponent implements OnInit {
     if (this.form.valid) {
       const newTodo: Todo = {
         task: this.form.get('title')!.value,
+        category: this.form.get('category')!.value,
         isCompleted: false,
       };
       this.todoList.push(newTodo);
