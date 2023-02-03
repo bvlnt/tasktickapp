@@ -30,9 +30,20 @@
         Add task
       </button>
     </div>
+    <nb-select
+      status="primary"
+      placeholder="Choose a category to filter by"
+      formControlName=""
+      style="margin-top: 1rem"
+    >
+      <nb-option *ngFor="let category of categories" [value]="category">{{
+        category
+      }}</nb-option>
+    </nb-select>
   </form>
   <!-- displaying task list -->
   <nb-card-header> To-Do List </nb-card-header>
+
   <nb-list>
     <nb-list-item
       *ngFor="let todo of todoList"
@@ -48,6 +59,7 @@
       </button>
     </nb-list-item>
   </nb-list>
+
   <nb-card-footer>
     <div>Progress</div>
     <nb-progress-bar
