@@ -43,6 +43,7 @@ export class TodolistComponent implements OnInit {
         );
       }
     });
+    console.log(this.progress);
   }
 
   onSubmit() {
