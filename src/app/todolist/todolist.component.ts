@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from './todo.interface';
-import {
-  UntypedFormBuilder,
-  UntypedFormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-todolist',
@@ -12,14 +9,14 @@ import {
   styleUrls: ['./todolist.component.scss'],
 })
 export class TodolistComponent implements OnInit {
-  todoList: Todo[] = [];
-  form: UntypedFormGroup;
+  todoList$: Observable<Todo[]> = of([]);
+  form: FormGroup;
   progress!: number;
 
   categories = ['Chores', 'Fitness', 'Shopping', 'Work', 'Project', 'Other'];
   selectedCategory = '';
 
-  constructor(private formBuilder: UntypedFormBuilder) {
+  constructor(private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
       title: ['', [Validators.required, Validators.minLength(2)]],
       category: ['', [Validators.required]],
@@ -35,15 +32,17 @@ export class TodolistComponent implements OnInit {
   }
 
   updateProgress() {
-    if (this.todoList.length === 0) {
-      this.progress = 0;
-    } else {
-      this.progress = Math.round(
-        (this.todoList.filter((todo) => todo.isCompleted).length /
-          this.todoList.length) *
-          100
-      );
-    }
+    this.todoList$.subscribe((todoList) => {
+      if (todoList.length === 0) {
+        this.progress = 0;
+      } else {
+        this.progress = Math.round(
+          (todoList.filter((todo) => todo.isCompleted).length /
+            todoList.length) *
+            100
+        );
+      }
+    });
   }
 
   onSubmit() {
@@ -53,19 +52,25 @@ export class TodolistComponent implements OnInit {
         category: this.form.get('category')!.value,
         isCompleted: false,
       };
-      this.todoList.push(newTodo);
+      this.todoList$.subscribe((todoList) => {
+        this.todoList$ = of([...todoList, newTodo]);
+      });
       this.form.reset();
       this.updateProgress();
     }
   }
 
   deleteItem(todo: Todo) {
-    this.todoList = this.todoList.filter((td) => td !== todo);
+    this.todoList$.subscribe((todoList) => {
+      this.todoList$ = of(todoList.filter((td) => td !== todo));
+    });
     this.updateProgress();
   }
 
   deleteCompleted() {
-    this.todoList = this.todoList.filter((todo) => !todo.isCompleted);
+    this.todoList$.subscribe((todoList) => {
+      this.todoList$ = of(todoList.filter((todo) => !todo.isCompleted));
+    });
     this.updateProgress();
     this.progressReset();
   }
