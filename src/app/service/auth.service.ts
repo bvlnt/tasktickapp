@@ -5,10 +5,13 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  private authSubject = new BehaviorSubject<boolean>(false);
+  private authSubject = new BehaviorSubject<boolean>(
+    JSON.parse(localStorage.getItem('isLoggedIn') || 'false')
+  );
   authStatus = this.authSubject.asObservable();
 
   updateAuthStatus(authstatus: boolean) {
+    localStorage.setItem('isLoggedIn', JSON.stringify(authstatus));
     this.authSubject.next(authstatus);
   }
 

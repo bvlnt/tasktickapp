@@ -30,25 +30,16 @@
         Add task
       </button>
     </div>
-    <nb-select
-      status="primary"
-      placeholder="Choose a category to filter by"
-      formControlName=""
-      style="margin-top: 1rem"
-    >
-      <nb-option *ngFor="let category of categories" [value]="category">{{
-        category
-      }}</nb-option>
-    </nb-select>
   </form>
   <!-- displaying task list -->
   <nb-card-header> To-Do List </nb-card-header>
 
   <nb-list>
     <nb-list-item
-      *ngFor="let todo of todoList"
+      *ngFor="let todo of todoList$ | async"
       [ngClass]="{ 'line-through-lightgreen': todo.isCompleted }"
-      ><div>{{ todo.task }} Category: {{ todo.category }}</div>
+    >
+      <div>{{ todo.task }} Category: {{ todo.category }}</div>
       <nb-checkbox
         status="success"
         [(ngModel)]="todo.isCompleted"
@@ -62,17 +53,12 @@
 
   <nb-card-footer>
     <div>Progress</div>
-    <nb-progress-bar
-      status="success"
-      [value]="progress"
-      [displayValue]="true"
-    ></nb-progress-bar>
+    <nb-progress-bar status="primary" [value]="progress"></nb-progress-bar>
     <button
       nbButton
-      hero
-      status="success"
-      (click)="deleteCompleted()"
+      status="danger"
       style="margin-top: 1rem"
+      (click)="deleteCompleted()"
     >
       Delete Completed Tasks
     </button>
